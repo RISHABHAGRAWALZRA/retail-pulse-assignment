@@ -102,11 +102,11 @@ const UploadScreen = ({ route, navigation }) => {
     const uploadImageOnFirebase = async () => {
         const promises = [];
         console.log("Hap");
-        pickedImage.map((element) => {
+        pickedImage.map(async(element) => {
             const today = new Date();
             const imagename = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds() + '_' + today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
-            const blob = await new Promise((resolve, reject) => {
+            
+            const blob = await new Promise((resolve, reject) => {   
                 const xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     resolve(xhr.response);
