@@ -28,8 +28,13 @@ const LoginScreen = ({ navigation }) => {
   const onLogin = async () => {
     try {
       if (email !== '' && password !== '') {
-        await auth.signInWithEmailAndPassword(email, password);
-        navigation.replace('home');
+        const data = await auth.signInWithEmailAndPassword(email, password);
+        console.log(data.user.uid);
+        const uid = data.user.uid;
+        //console.log(user.[user][uid]);
+        navigation.replace('home',{
+          userId: uid,
+        });
       }
     } catch (error) {
       setLoginError(error.message);
